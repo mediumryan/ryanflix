@@ -81,11 +81,7 @@ export default function Description({
           .map((item: ProductionCompaniesType) => {
             return (
               <div key={item.id} className="relative w-12 h-4 bg-white mr-1">
-                <Image
-                  src={getImages(item.logo_path)}
-                  alt={item.name}
-                  layout="fill"
-                />
+                <Image src={getImages(item.logo_path)} alt={item.name} fill />
               </div>
             );
           })}

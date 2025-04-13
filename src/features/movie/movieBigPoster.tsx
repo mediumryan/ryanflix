@@ -15,7 +15,7 @@ export default function MovieBigPoster({ bigPosterItem }: MovieBigPosterProps) {
   return (
     <div className="relative w-full h-screen">
       <Image
-        layout="fill"
+        fill
         src={getImages(bigPosterItem.poster_path)}
         alt={bigPosterItem.title}
         className="z-10"

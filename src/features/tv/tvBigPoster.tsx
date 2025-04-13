@@ -14,7 +14,7 @@ export default function TvBigPoster({ bigPosterItem }: TvBigPosterProps) {
   return (
     <div className="relative w-full h-screen">
       <Image
-        layout="fill"
+        fill
         src={getImages(bigPosterItem.poster_path)}
         alt={bigPosterItem.name}
         className="z-10"

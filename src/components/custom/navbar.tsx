@@ -20,6 +20,34 @@ export function Navigation() {
     setSearchWord('');
   };
 
+  const links = [
+    [
+      { link: '/movie/now-playing', text: 'Now Playing' },
+      { link: '/movie/popular', text: 'Popular' },
+      { link: '/movie/top-rated', text: 'Top Rated' },
+    ],
+    [
+      { link: '/tv/airing-today', text: 'Airing Today' },
+      { link: '/tv/popular', text: 'Popular' },
+      { link: '/tv/top-rated', text: 'Top Rated' },
+    ],
+  ];
+
+  const mainBtnStyle = `text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50`;
+
+  const subBtnWrapperStyle = `md:absolute left-0 md:hidden md:w-[120px] py-2 mt-1 flex group-hover:flex flex-col justify-center items-center bg-sky-50`;
+
+  const subBtnStyle = `text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50`;
+
+  const getBgByPath = (path: string) => {
+    if (path === '/movie') {
+      return pathName.includes(path) ? ' bg-sky-50' : '';
+    } else if (path === '/tv') {
+      return pathName.includes(path) ? ' bg-sky-50' : '';
+    }
+    return pathName === path ? ' bg-sky-50' : '';
+  };
+
   useEffect(() => {
     setOpen(true);
   }, [pathName]);
@@ -42,73 +70,53 @@ export function Navigation() {
         }`}
       >
         <li
-          className={`text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50 ${
-            pathName === '/' ? ' bg-sky-50' : ''
-          }`}
+          className={`${mainBtnStyle} ${getBgByPath('/')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
           <Link href="/">HOME</Link>
         </li>
         <li
-          className={`group relative text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50 ${
-            pathName === '/movie' ? ' bg-sky-50' : ''
-          }`}
+          className={`group relative ${mainBtnStyle} ${getBgByPath('/movie')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
           <Link href="/movie">MOVIES</Link>
           <div
-            className="md:absolute left-0 md:hidden md:w-[120px] py-2 mt-1 flex group-hover:flex flex-col justify-center items-center bg-sky-50"
+            className={subBtnWrapperStyle}
             style={{ borderRadius: '0 10px 10px 10px' }}
           >
-            <Link
-              href="/movie/now-playing"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Now Playing
-            </Link>
-            <Link
-              href="/movie/popular"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Popular
-            </Link>
-            <Link
-              href="/movie/top-rated"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Top Rated
-            </Link>
+            {links[0].map((item, index) => {
+              return (
+                <Link
+                  key={`movie_${index}`}
+                  href={item.link}
+                  className={subBtnStyle}
+                >
+                  {item.text}
+                </Link>
+              );
+            })}
           </div>
         </li>
         <li
-          className={`relative group text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50 ${
-            pathName === '/tv' ? ' bg-sky-50' : ''
-          }`}
+          className={`relative group ${mainBtnStyle} ${getBgByPath('/tv')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
           <Link href="/tv">TV SHOWS</Link>
           <div
-            className="md:absolute left-0 md:hidden md:w-[120px] py-2 mt-1 flex group-hover:flex flex-col justify-center items-center bg-sky-50"
+            className={subBtnWrapperStyle}
             style={{ borderRadius: '0 10px 10px 10px' }}
           >
-            <Link
-              href="/tv/airing-today"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Airing Today
-            </Link>
-            <Link
-              href="/tv/popular"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Popular
-            </Link>
-            <Link
-              href="/tv/top-rated"
-              className={`relative text-red-500 font-bold mx-1 rounded-md hover:text-black`}
-            >
-              Top Rated
-            </Link>
+            {links[1].map((item, index) => {
+              return (
+                <Link
+                  key={`tv_${index}`}
+                  href={item.link}
+                  className={subBtnStyle}
+                >
+                  {item.text}
+                </Link>
+              );
+            })}
           </div>
         </li>
       </ul>

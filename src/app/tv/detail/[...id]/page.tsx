@@ -44,7 +44,7 @@ export default async function TvDetail({ params }: TvDetailProps) {
   return (
     <div className="relative w-full h-full">
       <Image
-        layout="fill"
+        fill
         src={getImages(TvDetailData.poster_path)}
         alt={TvDetailData.name}
         className="z-10"

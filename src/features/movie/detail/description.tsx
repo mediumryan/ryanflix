@@ -47,7 +47,9 @@ export default function Description({
         >
           {movieDetailData.tagline}
         </p>
-        <p>{movieDetailData.overview}</p>
+        <p className="max-h-[200px] overflow-y-scroll">
+          {movieDetailData.overview}
+        </p>
       </div>
       <div className="flex items-center text-sm">
         <span className="mr-2">장르 :</span>
@@ -80,11 +82,7 @@ export default function Description({
           .map((item: ProductionCompaniesType) => {
             return (
               <div key={item.id} className="relative w-12 h-4 bg-white mr-1">
-                <Image
-                  src={getImages(item.logo_path)}
-                  alt={item.name}
-                  layout="fill"
-                />
+                <Image src={getImages(item.logo_path)} alt={item.name} fill />
               </div>
             );
           })}

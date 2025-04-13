@@ -50,7 +50,7 @@ export default function ContentSlider({
                     <CardContent className="group relative flex aspect-square items-center justify-center p-2 origin-bottom duration-300 hover:-translate-y-4">
                       <Link href={`/movie/detail/${item.id}`}>
                         <Image
-                          layout="fill"
+                          fill
                           className="rounded-md group-hover:opacity-15"
                           src={getImages(
                             item.poster_path || item.backdrop_path

@@ -19,6 +19,8 @@ export default async function SearchPage({ params }: SearchPageProps) {
     return media_type === 'movie' ? `/movie/detail/${id}` : `/tv/detail/${id}`;
   };
 
+  console.log('search data', data);
+
   return (
     <div className="flex flex-col bg-black">
       <h2 className="text-center text-2xl font-bold italic pt-24 pb-12">
@@ -34,7 +36,7 @@ export default async function SearchPage({ params }: SearchPageProps) {
                 <CardContent className="group relative flex aspect-square items-center justify-center p-2 origin-bottom duration-300 hover:-translate-y-4">
                   <Link href={getLink(item.media_type, item.id)}>
                     <Image
-                      layout="fill"
+                      fill
                       className="rounded-md group-hover:opacity-15"
                       src={getImages(item.poster_path || item.backdrop_path)}
                       alt={item.name}

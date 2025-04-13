@@ -1,4 +1,4 @@
-import Content from '@/features/movie/popular/content';
+import Content from '@/features/movie/content';
 import { AccentTextColor } from '@/service/common';
 import { getTopRatedMovies } from '@/service/movieService';
 
@@ -10,7 +10,7 @@ export default async function Page() {
       <div className="mt-24 mb-12 text-center text-2xl">
         <h2 style={{ textShadow: AccentTextColor }}>Movie : Top Rated</h2>
       </div>
-      <Content data={data} />
+      <Content data={data} type={'top-rated'} />
     </div>
   );
 }
