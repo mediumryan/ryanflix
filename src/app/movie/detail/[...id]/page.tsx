@@ -40,7 +40,7 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
   return (
     <div className="relative w-full h-full">
       <Image
-        layout="fill"
+        fill
         src={getImages(movieDetailData.poster_path)}
         alt={movieDetailData.title}
         className="z-10"
