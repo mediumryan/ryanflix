@@ -6,4 +6,4 @@ export const headers = {
   Expires: '0',
 };
 
-export const params = { language: 'ko-KR', page: 1, region: 'KR' };
+export const params = { language: 'ja-JP', page: 1, region: 'JP' };

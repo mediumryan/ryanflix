@@ -51,11 +51,11 @@ export default function Description({
         <p>{TvDetailData.overview}</p>
       </div>
       <div className="flex items-center text-sm truncate">
-        <span className="mr-2">장르 :</span>
+        <span className="mr-2">ジャンル :</span>
         <p>{tvDetailGenre}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">평점 :</span>
+        <span className="mr-2">評価 :</span>
         {voteArr.map((_, index: number) => {
           return (
             <span
@@ -75,7 +75,7 @@ export default function Description({
         </span>
       </div>
       <div className="flex items-center text-sm mt-2 truncate">
-        <span className="mr-2">제작사 :</span>
+        <span className="mr-2">制作会社 :</span>
         {TvDetailData.production_companies
           .slice(0, 5)
           .map((item: ProductionCompaniesType) => {
@@ -87,11 +87,11 @@ export default function Description({
           })}
       </div>
       <div className="flex items-center text-sm mt-2 truncate">
-        <span className="mr-2">출연 :</span>
+        <span className="mr-2">出演者 :</span>
         <span>{tvDetailCredit}</span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">공식 :</span>
+        <span className="mr-2">公式 :</span>
         <p>
           <Link
             target="blank"
@@ -103,16 +103,18 @@ export default function Description({
         </p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">첫방영 :</span>
+        <span className="mr-2">初放送 :</span>
         <p>{TvDetailData.first_air_date}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">상태 :</span>
-        <p>{TvDetailData.status === 'Returning Series' ? '방영중' : '종영'}</p>
+        <span className="mr-2">状態 :</span>
+        <p>
+          {TvDetailData.status === 'Returning Series' ? '放送中' : '放送終了'}
+        </p>
       </div>
       <div className="flex items-center text-sm mt-2">
         {TvDetailData.adult && (
-          <span className="mr-2 bg-red-500 rounded-full p-1">청불</span>
+          <span className="mr-2 bg-red-500 rounded-full p-1">R18+</span>
         )}
       </div>
     </div>

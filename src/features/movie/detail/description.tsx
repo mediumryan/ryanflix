@@ -52,11 +52,11 @@ export default function Description({
         </p>
       </div>
       <div className="flex items-center text-sm">
-        <span className="mr-2">장르 :</span>
+        <span className="mr-2">ジャンル :</span>
         <p>{movieDetailGenre ? movieDetailGenre : ''}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">평점 :</span>
+        <span className="mr-2">評価 :</span>
         {voteArr.map((_, index: number) => {
           return (
             <span
@@ -76,7 +76,7 @@ export default function Description({
         </span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">제작사 :</span>
+        <span className="mr-2">制作会社 :</span>
         {movieDetailData.production_companies
           .slice(0, 3)
           .map((item: ProductionCompaniesType) => {
@@ -88,20 +88,20 @@ export default function Description({
           })}
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">출연 :</span>
+        <span className="mr-2">出演者 :</span>
         <span>{movieDetailCredit}</span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">개봉일 :</span>
+        <span className="mr-2">公開日 :</span>
         <p>{movieDetailData.release_date}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">런타임 :</span>
-        <p>{movieDetailData.runtime}분</p>
+        <span className="mr-2">上映時間 :</span>
+        <p>{movieDetailData.runtime}分</p>
       </div>
       <div className="flex items-center text-sm mt-2">
         {movieDetailData.adult && (
-          <span className="mr-2 bg-red-500 rounded-full p-1">청불</span>
+          <span className="mr-2 bg-red-500 rounded-full p-1">R18+</span>
         )}
       </div>
     </div>
