@@ -19,9 +19,12 @@ interface TvDetailProps {
 
 export default async function TvDetail({ params }: TvDetailProps) {
   const tvId = params.id[0];
-  // tv detail data
-  const TvDetailData = await getTvShowDetails(tvId);
-
+  // fetch all data in parallel
+  const [TvDetailData, tvDetailCreditData, tvDetailVideo] = await Promise.all([
+    getTvShowDetails(tvId),
+    getTvShowCredits(tvId),
+    getTvShowVideos(tvId),
+  ]);
   // get genres
   const tvDetailGenre = TvDetailData.genres
     .map((item: { id: number; name: string }) => {
@@ -31,15 +34,12 @@ export default async function TvDetail({ params }: TvDetailProps) {
   // vote average for arr
   const voteArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // tv credit data
-  const tvDetailCreditData = await getTvShowCredits(tvId);
   const tvDetailCredit = tvDetailCreditData.cast
     .slice(0, 5)
     .map((credit: Credit) => {
       return credit.name;
     })
     .join(', ');
-  // tv video data
-  const tvDetailVideo = await getTvShowVideos(tvId);
 
   return (
     <div className="relative w-full h-full">

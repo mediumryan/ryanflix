@@ -1,19 +1,15 @@
-import { tvGenres } from '@/service/genre';
+import { tvGenresMap } from '@/service/genre';
 
-export const convertGenres = (genreIds: number[]) => {
+export const convertGenres = (genreIds: number[], lang: string = 'ja') => {
+  const map = tvGenresMap[lang] || tvGenresMap['ja'];
+
   if (genreIds.length > 3) {
     return genreIds
       .slice(0, 3)
-      .map((id) => {
-        const genre = tvGenres.find((genre) => genre.id === id);
-        return genre ? genre.name : 'Unknown';
-      })
+      .map((id) => map[id] || 'Unknown')
       .join(', ');
   }
   return genreIds
-    .map((id) => {
-      const genre = tvGenres.find((genre) => genre.id === id);
-      return genre ? genre.name : 'Unknown';
-    })
+    .map((id) => map[id] || 'Unknown')
     .join(', ');
 };

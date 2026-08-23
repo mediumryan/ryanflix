@@ -1,5 +1,5 @@
 import Content from '@/features/tv/content';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import { getTopRatedTvShows } from '@/service/tvShowService';
 
 export default async function Page() {

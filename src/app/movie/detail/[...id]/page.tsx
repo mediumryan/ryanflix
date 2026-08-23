@@ -18,8 +18,13 @@ interface MovieDetailProps {
 
 export default async function MovieDetail({ params }: MovieDetailProps) {
   const movieId = params.id[0];
-  // movie detail data
-  const movieDetailData = await getMovieDetails(movieId);
+  // fetch all data in parallel
+  const [movieDetailData, movieDetailCreditData, movieDetailVideo] =
+    await Promise.all([
+      getMovieDetails(movieId),
+      getMovieCredits(movieId),
+      getMovieVideos(movieId),
+    ]);
   // get genres
   const movieDetailGenre = movieDetailData.genres
     .map((item: { id: number; name: string }) => {
@@ -27,15 +32,12 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
     })
     .join(', ');
   // movie credit data
-  const movieDetailCreditData = await getMovieCredits(movieId);
   const movieDetailCredit = movieDetailCreditData.cast
     .slice(0, 3)
     .map((credit: Credit) => {
       return credit.name;
     })
     .join(', ');
-  // movie video data
-  const movieDetailVideo = await getMovieVideos(movieId);
 
   return (
     <div className="relative w-full h-full">

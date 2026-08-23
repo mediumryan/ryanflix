@@ -1,12 +1,13 @@
 'use client';
 
 import { trailerOpenAtom } from '@/data/detail';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import { getImages } from '@/utils/getImage';
 import { useAtomValue } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DescriptionProps {
   TvDetailData: any;
@@ -30,6 +31,7 @@ export default function Description({
   const voteArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const open = useAtomValue(trailerOpenAtom);
+  const { t } = useTranslation('common');
 
   return (
     <div
@@ -51,11 +53,11 @@ export default function Description({
         <p>{TvDetailData.overview}</p>
       </div>
       <div className="flex items-center text-sm truncate">
-        <span className="mr-2">ジャンル :</span>
+        <span className="mr-2">{t('detail.genre')} :</span>
         <p>{tvDetailGenre}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">評価 :</span>
+        <span className="mr-2">{t('detail.rating')} :</span>
         {voteArr.map((_, index: number) => {
           return (
             <span
@@ -75,7 +77,7 @@ export default function Description({
         </span>
       </div>
       <div className="flex items-center text-sm mt-2 truncate">
-        <span className="mr-2">制作会社 :</span>
+        <span className="mr-2">{t('detail.productionCompany')} :</span>
         {TvDetailData.production_companies
           .slice(0, 5)
           .map((item: ProductionCompaniesType) => {
@@ -87,11 +89,11 @@ export default function Description({
           })}
       </div>
       <div className="flex items-center text-sm mt-2 truncate">
-        <span className="mr-2">出演者 :</span>
+        <span className="mr-2">{t('detail.cast')} :</span>
         <span>{tvDetailCredit}</span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">公式 :</span>
+        <span className="mr-2">{t('detail.homepage')} :</span>
         <p>
           <Link
             target="blank"
@@ -103,13 +105,13 @@ export default function Description({
         </p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">初放送 :</span>
+        <span className="mr-2">{t('detail.firstAirDate')} :</span>
         <p>{TvDetailData.first_air_date}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">状態 :</span>
+        <span className="mr-2">{t('detail.status')} :</span>
         <p>
-          {TvDetailData.status === 'Returning Series' ? '放送中' : '放送終了'}
+          {TvDetailData.status === 'Returning Series' ? t('detail.statusOnAir') : t('detail.statusEnded')}
         </p>
       </div>
       <div className="flex items-center text-sm mt-2">
@@ -120,3 +122,4 @@ export default function Description({
     </div>
   );
 }
+

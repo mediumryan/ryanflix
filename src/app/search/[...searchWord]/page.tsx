@@ -1,9 +1,6 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { AccentTextColor, getSearch } from '@/service/common';
-import { getImages } from '@/utils/getImage';
-import Image from 'next/image';
-import Link from 'next/link';
+import { getSearch } from '@/service/common';
 import React from 'react';
+import SearchItem from './SearchItem';
 
 interface SearchPageProps {
   params: {
@@ -32,29 +29,11 @@ export default async function SearchPage({ params }: SearchPageProps) {
         {data.length > 0 &&
           data.map((item: any) => {
             return (
-              <Card key={item.id}>
-                <CardContent className="group relative flex aspect-square items-center justify-center p-2 origin-bottom duration-300 hover:-translate-y-4">
-                  <Link href={getLink(item.media_type, item.id)}>
-                    <Image
-                      fill
-                      className="rounded-md group-hover:opacity-15"
-                      src={getImages(item.poster_path || item.backdrop_path)}
-                      alt={item.name}
-                    />
-                    <div className="absolute text-white top-0 left-0 w-full h-full pt-4 px-4 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
-                      <h4
-                        className="text-xl"
-                        style={{ textShadow: AccentTextColor }}
-                      >
-                        {item.media_type === 'movie'
-                          ? item.title
-                          : item.media_type === 'tv' && item.name}
-                        ({item?.vote_average?.toFixed(1)})
-                      </h4>
-                    </div>
-                  </Link>
-                </CardContent>
-              </Card>
+              <SearchItem 
+                key={item.id} 
+                item={item} 
+                link={getLink(item.media_type, item.id)} 
+              />
             );
           })}
       </div>

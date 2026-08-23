@@ -1,6 +1,6 @@
 'use client';
 
-import { Movie } from '@/service/movieService';
+import type { Movie } from '@/service/movieService';
 import ContentSlider from './contentSlider';
 import MovieBigPoster from './movieBigPoster';
 

@@ -1,11 +1,12 @@
 'use client';
 
 import { trailerOpenAtom } from '@/data/detail';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import { getImages } from '@/utils/getImage';
 import { useAtomValue } from 'jotai';
 import Image from 'next/image';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DescriptionProps {
   movieDetailData: any;
@@ -29,6 +30,7 @@ export default function Description({
   const voteArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const open = useAtomValue(trailerOpenAtom);
+  const { t } = useTranslation('common');
 
   return (
     <div
@@ -52,11 +54,11 @@ export default function Description({
         </p>
       </div>
       <div className="flex items-center text-sm">
-        <span className="mr-2">ジャンル :</span>
+        <span className="mr-2">{t('detail.genre')} :</span>
         <p>{movieDetailGenre ? movieDetailGenre : ''}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">評価 :</span>
+        <span className="mr-2">{t('detail.rating')} :</span>
         {voteArr.map((_, index: number) => {
           return (
             <span
@@ -76,7 +78,7 @@ export default function Description({
         </span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">制作会社 :</span>
+        <span className="mr-2">{t('detail.productionCompany')} :</span>
         {movieDetailData.production_companies
           .slice(0, 3)
           .map((item: ProductionCompaniesType) => {
@@ -88,16 +90,16 @@ export default function Description({
           })}
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">出演者 :</span>
+        <span className="mr-2">{t('detail.cast')} :</span>
         <span>{movieDetailCredit}</span>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">公開日 :</span>
+        <span className="mr-2">{t('detail.releaseDate')} :</span>
         <p>{movieDetailData.release_date}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">上映時間 :</span>
-        <p>{movieDetailData.runtime}分</p>
+        <span className="mr-2">{t('detail.runtime')} :</span>
+        <p>{movieDetailData.runtime}{t('detail.runtimeUnit')}</p>
       </div>
       <div className="flex items-center text-sm mt-2">
         {movieDetailData.adult && (
@@ -107,3 +109,4 @@ export default function Description({
     </div>
   );
 }
+

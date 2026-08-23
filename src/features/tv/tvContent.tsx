@@ -1,4 +1,4 @@
-import { Tv } from '@/service/tvShowService';
+import type { Tv } from '@/service/tvShowService';
 import React from 'react';
 import TvBigPoster from './tvBigPoster';
 import ContentSlider from './contentSlider';

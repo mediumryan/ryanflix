@@ -4,10 +4,10 @@ import { getImages } from '@/utils/getImage';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Tv } from '@/service/tvShowService';
+import type { Tv } from '@/service/tvShowService';
 import { Loader } from 'lucide-react';
 
 interface ContentProps {

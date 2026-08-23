@@ -6,10 +6,13 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSelector } from './LanguageSelector';
 
 export function Navigation() {
   const pathName = usePathname();
   const router = useRouter();
+  const { t } = useTranslation('common');
 
   const [open, setOpen] = useState(true);
 
@@ -22,18 +25,18 @@ export function Navigation() {
 
   const links = [
     [
-      { link: '/movie/now-playing', text: 'Now Playing' },
-      { link: '/movie/popular', text: 'Popular' },
-      { link: '/movie/top-rated', text: 'Top Rated' },
+      { link: '/movie/now-playing', text: t('nav.nowPlaying') },
+      { link: '/movie/popular', text: t('nav.popular') },
+      { link: '/movie/top-rated', text: t('nav.topRated') },
     ],
     [
-      { link: '/tv/airing-today', text: 'Airing Today' },
-      { link: '/tv/popular', text: 'Popular' },
-      { link: '/tv/top-rated', text: 'Top Rated' },
+      { link: '/tv/airing-today', text: t('nav.airingToday') },
+      { link: '/tv/popular', text: t('nav.popular') },
+      { link: '/tv/top-rated', text: t('nav.topRated') },
     ],
   ];
 
-  const mainBtnStyle = `text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50`;
+  const mainBtnStyle = `text-red-500 font-bold mx-1 p-1 hover:text-black hover:bg-sky-50 whitespace-nowrap`;
 
   const subBtnWrapperStyle = `md:absolute left-0 md:hidden md:w-[120px] py-2 mt-1 flex group-hover:flex flex-col justify-center items-center bg-sky-50`;
 
@@ -73,13 +76,13 @@ export function Navigation() {
           className={`${mainBtnStyle} ${getBgByPath('/')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
-          <Link href="/">HOME</Link>
+          <Link href="/">{t('nav.home')}</Link>
         </li>
         <li
           className={`group relative ${mainBtnStyle} ${getBgByPath('/movie')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
-          <Link href="/movie">MOVIES</Link>
+          <Link href="/movie">{t('nav.movies')}</Link>
           <div
             className={subBtnWrapperStyle}
             style={{ borderRadius: '0 10px 10px 10px' }}
@@ -101,7 +104,7 @@ export function Navigation() {
           className={`relative group ${mainBtnStyle} ${getBgByPath('/tv')}`}
           style={{ borderRadius: '10px 10px 10px 0' }}
         >
-          <Link href="/tv">TV SHOWS</Link>
+          <Link href="/tv">{t('nav.tvShows')}</Link>
           <div
             className={subBtnWrapperStyle}
             style={{ borderRadius: '0 10px 10px 10px' }}
@@ -120,23 +123,24 @@ export function Navigation() {
           </div>
         </li>
       </ul>
-      <form
-        onSubmit={handleSubmit}
-        className={`flex items-center md:flex ${open ? 'hidden' : 'flex'}`}
-      >
-        <Search className="w-8 h-6" />
-        <Input
-          className="mx-2 text-black h-8 md:w-[250px]"
-          type="text"
-          value={searchWord}
-          onChange={(e) => {
-            setSearchWord(e.target.value);
-          }}
-        />
-        <Button className="bg-transparent p-0">
-          <Check className="w-8 h-6" />
-        </Button>
-      </form>
+      <div className={`flex items-center md:flex ${open ? 'hidden' : 'flex'}`}>
+        <LanguageSelector />
+        <form onSubmit={handleSubmit} className="flex items-center">
+          <Search className="w-8 h-6" />
+          <Input
+            className="mx-2 text-black h-8 md:w-[250px]"
+            type="text"
+            placeholder={t('nav.searchPlaceholder')}
+            value={searchWord}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+            }}
+          />
+          <Button className="bg-transparent p-0">
+            <Check className="w-8 h-6" />
+          </Button>
+        </form>
+      </div>
       <button
         className="md:hidden absolute top-3 left-4 hover:text-red-500"
         onClick={() => {

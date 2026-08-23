@@ -1,5 +1,5 @@
 import Content from '@/features/movie/content';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import { getPopularMovies } from '@/service/movieService';
 
 export default async function Page() {

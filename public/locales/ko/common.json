@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "홈",
+    "movies": "영화",
+    "nowPlaying": "현재 상영중",
+    "popular": "인기",
+    "topRated": "최고 평점",
+    "tvShows": "TV 프로그램",
+    "airingToday": "오늘 방영",
+    "searchPlaceholder": "검색어 입력..."
+  },
+  "detail": {
+    "genre": "장르",
+    "rating": "평점",
+    "productionCompany": "제작사",
+    "cast": "출연진",
+    "releaseDate": "개봉일",
+    "runtime": "상영시간",
+    "runtimeUnit": "분",
+    "homepage": "공식 사이트",
+    "firstAirDate": "첫 방송일",
+    "status": "상태",
+    "statusOnAir": "방영중",
+    "statusEnded": "방영 종료"
+  }
+}

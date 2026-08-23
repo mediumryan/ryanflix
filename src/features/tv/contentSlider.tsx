@@ -10,9 +10,9 @@ import {
 } from '@/components/ui/carousel';
 import Link from 'next/link';
 import { getImages } from '@/utils/getImage';
-import { AccentTextColor } from '@/service/common';
+import { AccentTextColor } from '@/utils/theme';
 import Image from 'next/image';
-import { Tv } from '@/service/tvShowService';
+import type { Tv } from '@/service/tvShowService';
 import { PlayCircle } from 'lucide-react';
 
 interface ContentSliderProps {

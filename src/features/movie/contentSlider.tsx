@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/carousel';
 import Link from 'next/link';
 import { getImages } from '@/utils/getImage';
-import { Movie } from '@/service/movieService';
-import { AccentTextColor } from '@/service/common';
+import type { Movie } from '@/service/movieService';
+import { AccentTextColor } from '@/utils/theme';
 import Image from 'next/image';
 import { PlayCircle } from 'lucide-react';
 

@@ -1,6 +1,4 @@
-import axios from 'axios';
-// props
-import { params, headers } from '@/service/index';
+import { fetchTMDB } from '@/service/index';
 
 export type Movie = {
   adult: boolean;
@@ -69,86 +67,26 @@ export type VideoResponse = {
 
 // Movies
 export const getNowPlayingMovies = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(
-    `${process.env.BASE_URL}/movie/now_playing`,
-    {
-      params: newParams,
-      headers,
-    }
-  );
-
-  if (response.status === 200) {
-    return response.data as MovieResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/movie/now_playing', { page }) as Promise<MovieResponse>;
 };
 
 export const getPopularMovies = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(`${process.env.BASE_URL}/movie/popular`, {
-    params: newParams,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data as MovieResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/movie/popular', { page }) as Promise<MovieResponse>;
 };
 
 export const getTopRatedMovies = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(`${process.env.BASE_URL}/movie/top_rated`, {
-    params: newParams,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data as MovieResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/movie/top_rated', { page }) as Promise<MovieResponse>;
 };
 
 export const getMovieDetails = async (movieId: string) => {
-  const response = await axios.get(`${process.env.BASE_URL}/movie/${movieId}`, {
-    params,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/movie/${movieId}`);
 };
 
 export const getMovieCredits = async (movieId: string) => {
-  const response = await axios.get(
-    `${process.env.BASE_URL}/movie/${movieId}/credits`,
-    {
-      params,
-      headers,
-    }
-  );
-  if (response.status === 200) {
-    return response.data as CreditResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/movie/${movieId}/credits`) as Promise<CreditResponse>;
 };
 
 export const getMovieVideos = async (movieId: string) => {
-  const response = await axios.get(
-    `${process.env.BASE_URL}/movie/${movieId}/videos`,
-    {
-      params,
-      headers,
-    }
-  );
-  if (response.status === 200) {
-    return response.data as VideoResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/movie/${movieId}/videos`) as Promise<VideoResponse>;
 };
+

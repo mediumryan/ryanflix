@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Ubuntu } from 'next/font/google';
 import './globals.css';
 import { Navigation } from '@/components/custom/navbar';
+import I18nProvider from '@/components/providers/I18nProvider';
+import { cookies } from 'next/headers';
 
 const inter = Ubuntu({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -15,13 +17,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const initialLanguage = cookieStore.get('language')?.value || 'ja';
+
   return (
-    <html lang="en">
+    <html lang={initialLanguage}>
       <body className={inter.className}>
-        <div className="h-screen bg-black text-sky-50">
-          <Navigation />
-          {children}
-        </div>
+        <I18nProvider initialLanguage={initialLanguage}>
+          <div className="h-screen bg-black text-sky-50">
+            <Navigation />
+            {children}
+          </div>
+        </I18nProvider>
       </body>
     </html>
   );

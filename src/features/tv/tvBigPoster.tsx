@@ -1,16 +1,21 @@
-import { Tv } from '@/service/tvShowService';
+'use client';
+
+import type { Tv } from '@/service/tvShowService';
 import { convertGenres } from '@/utils/convertGnresTv';
 import { getImages } from '@/utils/getImage';
 import { InfoIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface TvBigPosterProps {
   bigPosterItem: Tv;
 }
 
 export default function TvBigPoster({ bigPosterItem }: TvBigPosterProps) {
+  const { t, i18n } = useTranslation('common');
+
   return (
     <div className="relative w-full h-screen">
       <Image
@@ -31,7 +36,7 @@ export default function TvBigPoster({ bigPosterItem }: TvBigPosterProps) {
         <h5 className="mb-4">{bigPosterItem.original_name}</h5>
         <p className="text-sm">{bigPosterItem.overview}</p>
         <p className="text-sm mt-4">
-          장르 : {convertGenres(bigPosterItem.genre_ids)}
+          {t('detail.genre')} : {convertGenres(bigPosterItem.genre_ids, i18n.language)}
         </p>
         <Link
           className="py-2 my-2 w-12 flex justify-center items-center hover:text-red-500"

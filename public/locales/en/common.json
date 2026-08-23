@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "HOME",
+    "movies": "MOVIES",
+    "nowPlaying": "Now Playing",
+    "popular": "Popular",
+    "topRated": "Top Rated",
+    "tvShows": "TV SHOWS",
+    "airingToday": "Airing Today",
+    "searchPlaceholder": "Search..."
+  },
+  "detail": {
+    "genre": "Genre",
+    "rating": "Rating",
+    "productionCompany": "Production",
+    "cast": "Cast",
+    "releaseDate": "Release Date",
+    "runtime": "Runtime",
+    "runtimeUnit": "min",
+    "homepage": "Homepage",
+    "firstAirDate": "First Air Date",
+    "status": "Status",
+    "statusOnAir": "On Air",
+    "statusEnded": "Ended"
+  }
+}

@@ -1,6 +1,4 @@
-import axios from 'axios';
-// props
-import { params, headers } from '@/service/index';
+import { fetchTMDB } from '@/service/index';
 
 export type Tv = {
   adult: boolean;
@@ -27,82 +25,26 @@ export type TvResponse = {
 
 // TV Shows
 export const getPopularTvShows = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(`${process.env.BASE_URL}/tv/popular`, {
-    params: newParams,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data as TvResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/tv/popular', { page }) as Promise<TvResponse>;
 };
 
 export const getAiringTodayTvShows = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(`${process.env.BASE_URL}/tv/airing_today`, {
-    params: newParams,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data as TvResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/tv/airing_today', { page }) as Promise<TvResponse>;
 };
 
 export const getTopRatedTvShows = async (page: number = 1) => {
-  const newParams = { ...params, page };
-  const response = await axios.get(`${process.env.BASE_URL}/tv/top_rated`, {
-    params: newParams,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data as TvResponse;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB('/tv/top_rated', { page }) as Promise<TvResponse>;
 };
 
 export const getTvShowDetails = async (tvShowId: string) => {
-  const response = await axios.get(`${process.env.BASE_URL}/tv/${tvShowId}`, {
-    params,
-    headers,
-  });
-  if (response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/tv/${tvShowId}`);
 };
 
 export const getTvShowCredits = async (tvShowId: string) => {
-  const response = await axios.get(
-    `${process.env.BASE_URL}/tv/${tvShowId}/credits`,
-    {
-      params,
-      headers,
-    }
-  );
-  if (response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/tv/${tvShowId}/credits`);
 };
 
 export const getTvShowVideos = async (tvShowId: string) => {
-  const response = await axios.get(
-    `${process.env.BASE_URL}/tv/${tvShowId}/videos`,
-    {
-      params,
-      headers,
-    }
-  );
-  if (response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error('Fetch error');
-  }
+  return fetchTMDB(`/tv/${tvShowId}/videos`);
 };
+

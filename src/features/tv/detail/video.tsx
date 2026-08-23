@@ -9,8 +9,35 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { trailerOpenAtom } from '@/data/detail';
-import { VideoResponse } from '@/service/movieService';
+import type { VideoResponse } from '@/service/movieService';
 import { useAtomValue } from 'jotai';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
+
+function VideoIframe({ videoKey, title }: { videoKey: string; title: string }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative w-full md:w-3/4 h-full">
+      {!loaded && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 rounded-md">
+          <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
+          <p className="mt-2 text-sm text-sky-50/60 animate-pulse">Loading video...</p>
+        </div>
+      )}
+      <iframe
+        src={`https://www.youtube.com/embed/${videoKey}`}
+        title={title}
+        className={`w-full h-full transition-opacity duration-300 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
 
 interface TvDetailVideoProps {
   tvDetailVideo: VideoResponse;
@@ -34,14 +61,7 @@ export default function TvDetailVideo({ tvDetailVideo }: TvDetailVideoProps) {
               <div className="p-1 h-full">
                 <Card className="h-full">
                   <CardContent className="flex items-center justify-center p-6 h-full">
-                    <iframe
-                      key={item.id}
-                      src={`https://www.youtube.com/embed/${item.key}`}
-                      title={item.key}
-                      className="w-full md:w-3/4 h-full"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                    />
+                    <VideoIframe videoKey={item.key} title={item.key} />
                   </CardContent>
                 </Card>
               </div>
@@ -66,3 +86,4 @@ export default function TvDetailVideo({ tvDetailVideo }: TvDetailVideoProps) {
     </Carousel>
   );
 }
+
