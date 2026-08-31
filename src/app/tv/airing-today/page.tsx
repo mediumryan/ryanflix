@@ -3,7 +3,7 @@ import { AccentTextColor } from '@/utils/theme';
 import { getAiringTodayTvShows } from '@/service/tvShowService';
 
 export default async function Page() {
-  const data = (await getAiringTodayTvShows()).results;
+  const data = await getAiringTodayTvShows();
 
   return (
     <div className="flex flex-col bg-black">

@@ -36,11 +36,11 @@ export default function Content({ data, type }: ContentProps) {
       type === 'airing-today'
         ? 'getAiringToday'
         : type === 'popular'
-        ? 'getPopular'
-        : 'getTopRated';
+          ? 'getPopular'
+          : 'getTopRated';
     const getData = async () => {
       setPage((pre) => pre + 1);
-      const res = await fetch(`/tv/api/getAiringToday/${page}`);
+      const res = await fetch(`/api/tv/getAiringToday/${page}`);
       const data = await res.json();
       setDataArr((pre) => {
         const newData = [...pre, ...data];

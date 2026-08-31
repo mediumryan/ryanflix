@@ -1,6 +1,6 @@
-import { getSearch } from '@/service/common';
 import React from 'react';
 import SearchItem from './SearchItem';
+import { getSearch } from '@/service/common';
 
 interface SearchPageProps {
   params: {
@@ -29,10 +29,10 @@ export default async function SearchPage({ params }: SearchPageProps) {
         {data.length > 0 &&
           data.map((item: any) => {
             return (
-              <SearchItem 
-                key={item.id} 
-                item={item} 
-                link={getLink(item.media_type, item.id)} 
+              <SearchItem
+                key={item.id}
+                item={item}
+                link={getLink(item.media_type, item.id)}
               />
             );
           })}

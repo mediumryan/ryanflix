@@ -6,9 +6,9 @@ import {
 } from '@/service/movieService';
 
 export default async function MoviePage() {
-  const movieNowPlaying = (await getNowPlayingMovies()).results;
-  const moviePopular = (await getPopularMovies()).results;
-  const movieTopRated = (await getTopRatedMovies()).results;
+  const movieNowPlaying = await getNowPlayingMovies();
+  const moviePopular = await getPopularMovies();
+  const movieTopRated = await getTopRatedMovies();
 
   return (
     <MovieContent

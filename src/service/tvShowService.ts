@@ -1,4 +1,4 @@
-import { fetchTMDB } from '@/service/index';
+import { fetchTMDB } from '@/service/common';
 
 export type Tv = {
   adult: boolean;
@@ -25,26 +25,29 @@ export type TvResponse = {
 
 // TV Shows
 export const getPopularTvShows = async (page: number = 1) => {
-  return fetchTMDB('/tv/popular', { page }) as Promise<TvResponse>;
+  const res = await fetchTMDB('/tv/popular', { page });
+  return res.results as Tv[];
 };
 
 export const getAiringTodayTvShows = async (page: number = 1) => {
-  return fetchTMDB('/tv/airing_today', { page }) as Promise<TvResponse>;
+  const res = await fetchTMDB('/tv/airing_today', { page });
+  return res.results as Tv[];
 };
 
 export const getTopRatedTvShows = async (page: number = 1) => {
-  return fetchTMDB('/tv/top_rated', { page }) as Promise<TvResponse>;
+  const res = await fetchTMDB('/tv/top_rated', { page });
+  return res.results as Tv[];
 };
 
 export const getTvShowDetails = async (tvShowId: string) => {
-  return fetchTMDB(`/tv/${tvShowId}`);
+  const res = await fetchTMDB(`/tv/${tvShowId}`);
+  return res;
 };
 
 export const getTvShowCredits = async (tvShowId: string) => {
-  return fetchTMDB(`/tv/${tvShowId}/credits`);
+  return await fetchTMDB(`/tv/${tvShowId}/credits`);
 };
 
 export const getTvShowVideos = async (tvShowId: string) => {
-  return fetchTMDB(`/tv/${tvShowId}/videos`);
+  return await fetchTMDB(`/tv/${tvShowId}/videos`);
 };
-

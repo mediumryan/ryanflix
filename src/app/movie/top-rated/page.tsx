@@ -3,7 +3,7 @@ import { AccentTextColor } from '@/utils/theme';
 import { getTopRatedMovies } from '@/service/movieService';
 
 export default async function Page() {
-  const data = (await getTopRatedMovies()).results;
+  const data = await getTopRatedMovies();
 
   return (
     <div className="flex flex-col bg-black">

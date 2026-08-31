@@ -7,6 +7,7 @@
     "topRated": "최고 평점",
     "tvShows": "TV 프로그램",
     "airingToday": "오늘 방영",
+    "search": "검색",
     "searchPlaceholder": "검색어 입력..."
   },
   "detail": {
@@ -22,5 +23,9 @@
     "status": "상태",
     "statusOnAir": "방영중",
     "statusEnded": "방영 종료"
+  },
+  "search": {
+    "resultSuccess": "[{{keyword}}]로 검색한 결과가 없습니다.",
+    "noResult": "[{{keyword}}]로 검색한 결과입니다."
   }
 }

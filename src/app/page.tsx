@@ -7,7 +7,7 @@ export default async function Home() {
   const homeTvShowsData = await getPopularTvShows();
 
   return (
-    <div className="w-full h-[calc(100vh-72px)] bg-home-image bg-cover bg-center flex flex-col md:flex-row items-center justify-end md:justify-center">
+    <div className="w-full min-h-screen pt-[80px] pb-8 bg-home-image bg-cover bg-center flex flex-col md:flex-row items-center justify-center md:justify-center gap-8 md:gap-4 overflow-y-auto">
       <HomeCarousel type="movie" data={homeMoviesData} />
       <HomeCarousel type="tv" data={homeTvShowsData} />
     </div>

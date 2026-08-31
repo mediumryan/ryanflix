@@ -1,4 +1,4 @@
-import { fetchTMDB } from '@/service/index';
+import { fetchTMDB } from '@/service/common';
 
 export type Movie = {
   adult: boolean;
@@ -67,15 +67,18 @@ export type VideoResponse = {
 
 // Movies
 export const getNowPlayingMovies = async (page: number = 1) => {
-  return fetchTMDB('/movie/now_playing', { page }) as Promise<MovieResponse>;
+  const res = await fetchTMDB('/movie/now_playing', { page });
+  return res.results as Movie[];
 };
 
 export const getPopularMovies = async (page: number = 1) => {
-  return fetchTMDB('/movie/popular', { page }) as Promise<MovieResponse>;
+  const res = await fetchTMDB('/movie/popular', { page });
+  return res.results as Movie[];
 };
 
 export const getTopRatedMovies = async (page: number = 1) => {
-  return fetchTMDB('/movie/top_rated', { page }) as Promise<MovieResponse>;
+  const res = await fetchTMDB('/movie/top_rated', { page });
+  return res.results as Movie[];
 };
 
 export const getMovieDetails = async (movieId: string) => {
@@ -83,10 +86,11 @@ export const getMovieDetails = async (movieId: string) => {
 };
 
 export const getMovieCredits = async (movieId: string) => {
-  return fetchTMDB(`/movie/${movieId}/credits`) as Promise<CreditResponse>;
+  const res = await fetchTMDB(`/movie/${movieId}/credits`);
+  return res as CreditResponse;
 };
 
 export const getMovieVideos = async (movieId: string) => {
-  return fetchTMDB(`/movie/${movieId}/videos`) as Promise<VideoResponse>;
+  const res = await fetchTMDB(`/movie/${movieId}/videos`);
+  return res as VideoResponse;
 };
-

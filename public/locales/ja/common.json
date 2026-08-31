@@ -7,6 +7,7 @@
     "topRated": "高評価",
     "tvShows": "TV番組",
     "airingToday": "今日放送",
+    "search": "検索",
     "searchPlaceholder": "検索..."
   },
   "detail": {
@@ -22,5 +23,9 @@
     "status": "状態",
     "statusOnAir": "放送中",
     "statusEnded": "放送終了"
+  },
+  "search": {
+    "resultSuccess": "「{{keyword}}」の検索結果はありません。",
+    "noResult": "「{{keyword}}」の検索結果です。"
   }
 }

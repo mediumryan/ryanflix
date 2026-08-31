@@ -6,8 +6,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
-import type { MovieResponse } from '@/service/movieService';
-import type { TvResponse } from '@/service/tvShowService';
+import type { Movie, MovieResponse } from '@/service/movieService';
+import type { Tv, TvResponse } from '@/service/tvShowService';
 import { getImages } from '@/utils/getImage';
 import Autoplay from 'embla-carousel-autoplay';
 import { Loader2 } from 'lucide-react';
@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 interface HomeCarouselProps {
   type: string;
-  data: MovieResponse | TvResponse;
+  data: Movie[] | Tv[];
 }
 
 function CarouselImage({
@@ -54,7 +54,6 @@ function CarouselImage({
 }
 
 export function HomeCarousel({ type, data }: HomeCarouselProps) {
-  const homeData = data.results;
   const { t } = useTranslation('common');
 
   return (
@@ -75,16 +74,16 @@ export function HomeCarousel({ type, data }: HomeCarouselProps) {
           opts={{ loop: true }}
         >
           <CarouselContent>
-            {homeData?.map((item, index) => (
+            {data?.map((item, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
                   <Card className="rounded-md overflow-hidden">
                     <CardContent className="flex aspect-square items-center justify-center">
                       <CarouselImage
-                        src={getImages(
-                          item.poster_path || item.backdrop_path
-                        )}
-                        alt={type === 'movie' ? item?.title || '' : item.name || ''}
+                        src={getImages(item.poster_path || item.backdrop_path)}
+                        alt={
+                          type === 'movie' ? item?.title || '' : item.name || ''
+                        }
                         href={type === 'movie' ? '/movie' : '/tv'}
                       />
                     </CardContent>
@@ -98,4 +97,3 @@ export function HomeCarousel({ type, data }: HomeCarouselProps) {
     </div>
   );
 }
-

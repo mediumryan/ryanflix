@@ -6,9 +6,9 @@ import {
 } from '@/service/tvShowService';
 
 export default async function TvPage() {
-  const tvAiringToday = (await getAiringTodayTvShows()).results;
-  const tvPopular = (await getPopularTvShows()).results;
-  const tvTopRated = (await getTopRatedTvShows()).results;
+  const tvAiringToday = await getAiringTodayTvShows();
+  const tvPopular = await getPopularTvShows();
+  const tvTopRated = await getTopRatedTvShows();
 
   return (
     <TvContent

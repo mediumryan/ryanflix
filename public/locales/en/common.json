@@ -7,6 +7,7 @@
     "topRated": "Top Rated",
     "tvShows": "TV SHOWS",
     "airingToday": "Airing Today",
+    "search": "Search",
     "searchPlaceholder": "Search..."
   },
   "detail": {
@@ -22,5 +23,9 @@
     "status": "Status",
     "statusOnAir": "On Air",
     "statusEnded": "Ended"
+  },
+  "search": {
+    "resultSuccess": "Search results for '{{keyword}}'.",
+    "noResult": "No results found for '{{keyword}}'."
   }
 }

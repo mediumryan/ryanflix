@@ -1,3 +1,4 @@
+import React from 'react';
 import ToggleBtn from '@/features/common/toggle';
 import Description from '@/features/tv/detail/description';
 import TvDetailVideo from '@/features/tv/detail/video';
@@ -9,7 +10,6 @@ import {
 } from '@/service/tvShowService';
 import { getImages } from '@/utils/getImage';
 import Image from 'next/image';
-import React from 'react';
 
 interface TvDetailProps {
   params: {
