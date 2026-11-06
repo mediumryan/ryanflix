@@ -25,7 +25,7 @@
     "statusEnded": "Ended"
   },
   "search": {
-    "resultSuccess": "Search results for '{{keyword}}'.",
-    "noResult": "No results found for '{{keyword}}'."
+    "results": "Search results for '{{keyword}}'.",
+    "noResults": "No results found for '{{keyword}}'."
   }
 }

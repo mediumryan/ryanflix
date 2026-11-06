@@ -16,7 +16,7 @@ export default function ToggleBtn() {
 
   return (
     <Button
-      className="absolute top-4 right-16 bg-yellow-500 md:hidden mt-24 md:m-0 z-40"
+      className="absolute right-5 top-24 z-40 rounded-full border border-white/20 bg-white/10 px-5 text-sm text-white shadow-lg backdrop-blur-md hover:bg-white/20 md:hidden"
       onClick={() => {
         setOpen(!open);
       }}

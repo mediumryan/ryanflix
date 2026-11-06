@@ -40,31 +40,27 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
     .join(', ');
 
   return (
-    <div className="relative w-full h-full">
+    <main className="relative min-h-screen overflow-hidden bg-zinc-950 text-sky-50">
       <Image
         fill
         src={getImages(movieDetailData.poster_path)}
         alt={movieDetailData.title}
-        className="z-10"
+        className="z-0 object-cover object-center opacity-60 blur-[1px]"
       />
-      {/* for bg gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black to-transparent z-20"></div>
-      {/* big poster - info box */}
+      <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.2),transparent_36%),linear-gradient(120deg,rgba(3,7,18,0.78)_12%,rgba(3,7,18,0.54)_55%,rgba(3,7,18,0.8))]" />
       <ToggleBtn />
-      <div
-        className="absolute top-[10%] left-1/2 translate-x-[-50%] md:left-12 md:translate-x-0 w-[calc(100%-72px)] h-[85%] bg-[rgba(0,0,0,0.5)] z-30 p-4 rounded-lg
-    flex flex-col md:flex-row
-  "
-      >
+      <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 pb-10 pt-24 sm:px-8 lg:px-12">
+        <div className="grid w-full gap-8 rounded-2xl border border-white/10 bg-black/35 p-5 shadow-2xl backdrop-blur-md sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12 lg:p-12">
         <Description
           movieDetailData={movieDetailData}
           movieDetailGenre={movieDetailGenre}
           movieDetailCredit={movieDetailCredit}
         />
-        <div className="md:basis-7/12 flex justify-center items-center h-full">
+        <div className="flex min-h-0 items-center justify-center">
           <MovieDetailVideo movieDetailVideo={movieDetailVideo} />
         </div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

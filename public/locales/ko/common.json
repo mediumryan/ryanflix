@@ -25,7 +25,7 @@
     "statusEnded": "방영 종료"
   },
   "search": {
-    "resultSuccess": "[{{keyword}}]로 검색한 결과가 없습니다.",
-    "noResult": "[{{keyword}}]로 검색한 결과입니다."
+    "results": "[{{keyword}}]로 검색한 결과입니다.",
+    "noResults": "[{{keyword}}]로 검색한 결과가 없습니다."
   }
 }

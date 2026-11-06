@@ -36,74 +36,77 @@ export default function Description({
     <div
       className={`md:basis-5/12 md:pt-24 md:pl-24 ${
         open ? 'hidden' : 'block'
-      } md:block duration-700 origin-center`}
+      } md:block min-w-0 duration-700 origin-center`}
     >
-      <h2 className="text-2xl" style={{ textShadow: AccentTextColor }}>
+      <h2 className="break-words text-3xl font-bold leading-tight sm:text-4xl" style={{ textShadow: AccentTextColor }}>
         {movieDetailData.title}
       </h2>
-      <h5>{movieDetailData.original_title}</h5>
-      <div className="my-8 text-sm">
+      <h5 className="mt-2 text-sm text-sky-50/60">{movieDetailData.original_title}</h5>
+      <div className="my-7 space-y-3 text-sm leading-6 text-sky-50/80 sm:my-9">
         <p
-          className="text-lg italic mb-2"
+          className="text-lg italic leading-7 text-sky-50"
           style={{ textShadow: AccentTextColor }}
         >
           {movieDetailData.tagline}
         </p>
-        <p className="max-h-[200px] overflow-y-scroll">
+        <p className="max-h-40 overflow-y-auto pr-2 sm:max-h-48">
           {movieDetailData.overview}
         </p>
       </div>
-      <div className="flex items-center text-sm">
-        <span className="mr-2">{t('detail.genre')} :</span>
-        <p>{movieDetailGenre ? movieDetailGenre : ''}</p>
+      <div className="flex flex-wrap items-start gap-x-2 gap-y-1 text-sm">
+        <span className="shrink-0 text-sky-50/60">{t('detail.genre')} :</span>
+        <p className="min-w-0 break-words">{movieDetailGenre || ''}</p>
       </div>
-      <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">{t('detail.rating')} :</span>
-        {voteArr.map((_, index: number) => {
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 text-sm">
+        <span className="shrink-0 text-sky-50/60">{t('detail.rating')} :</span>
+        <div className="flex items-center">
+          {voteArr.map((_, index: number) => {
           return (
             <span
               key={index}
-              className={`flex items-center w-2 h-4 mr-1 rounded-[1px] ${
+              className={`mr-1 h-3 w-1.5 rounded-sm ${
                 movieDetailData.vote_average.toFixed(1) > index
                   ? 'bg-red-500'
                   : 'bg-sky-50'
               }
-                  ${index === 9 && 'mr-2'}
                   `}
             />
           );
-        })}
+          })}
+        </div>
         <span className="tracking-wider">
           ({movieDetailData.vote_average.toFixed(1)})
         </span>
       </div>
-      <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">{t('detail.productionCompany')} :</span>
-        {movieDetailData.production_companies
+      <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+        <span className="shrink-0 text-sky-50/60">{t('detail.productionCompany')} :</span>
+        <div className="flex flex-wrap gap-1">
+          {movieDetailData.production_companies
           .slice(0, 3)
           .map((item: ProductionCompaniesType) => {
             return (
-              <div key={item.id} className="relative w-12 h-4 bg-white mr-1">
+              <div key={item.id} className="relative h-6 w-14 rounded-sm bg-white p-1">
                 <Image src={getImages(item.logo_path)} alt={item.name} fill />
               </div>
             );
           })}
+        </div>
       </div>
-      <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">{t('detail.cast')} :</span>
-        <span>{movieDetailCredit}</span>
+      <div className="mt-3 flex flex-wrap items-start gap-x-2 gap-y-1 text-sm">
+        <span className="shrink-0 text-sky-50/60">{t('detail.cast')} :</span>
+        <span className="min-w-0 break-words">{movieDetailCredit}</span>
       </div>
-      <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">{t('detail.releaseDate')} :</span>
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 text-sm">
+        <span className="text-sky-50/60">{t('detail.releaseDate')} :</span>
         <p>{movieDetailData.release_date}</p>
       </div>
-      <div className="flex items-center text-sm mt-2">
-        <span className="mr-2">{t('detail.runtime')} :</span>
-        <p>{movieDetailData.runtime}{t('detail.runtimeUnit')}</p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 text-sm">
+        <span className="text-sky-50/60">{t('detail.runtime')} :</span>
+        <p>{movieDetailData.runtime} {t('detail.runtimeUnit')}</p>
       </div>
-      <div className="flex items-center text-sm mt-2">
+      <div className="mt-4 flex items-center text-sm">
         {movieDetailData.adult && (
-          <span className="mr-2 bg-red-500 rounded-full p-1">R18+</span>
+          <span className="rounded-full bg-red-500/90 px-3 py-1 text-xs font-semibold">R18+</span>
         )}
       </div>
     </div>
